@@ -64,11 +64,7 @@
 
 - (BOOL) isSystemUrl:(NSURL*)url
 {
-    if ([[url host] isEqualToString:@"itunes.apple.com"]) {
-        return YES;
-    }
-
-    return NO;
+    return [[url host] isEqualToString:@"itunes.apple.com"];
 }
 
 - (void)open:(CDVInvokedUrlCommand*)command
