@@ -96,7 +96,7 @@ module.exports = function(strUrl, strWindowName, strWindowFeatures, callbacks) {
        iab._eventHandler(eventname);
     };
 
-    strWindowFeatures = strWindowFeatures || "";
+    strWindowFeatures = strWindowFeatures || {};
 
     exec(cb, cb, "InAppBrowser", "open", [strUrl, strWindowName, strWindowFeatures]);
     return iab;
