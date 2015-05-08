@@ -49,6 +49,7 @@
 @property (nonatomic, assign) BOOL location;
 @property (nonatomic, assign) BOOL toolbar;
 @property (nonatomic, copy) NSString* closebuttoncaption;
+@property (nonatomic, copy) NSString* closebuttoncolorname;
 @property (nonatomic, copy) NSString* toolbarposition;
 @property (nonatomic, assign) BOOL clearcache;
 @property (nonatomic, assign) BOOL clearsessioncache;
@@ -64,7 +65,7 @@
 @property (nonatomic, assign) BOOL hidden;
 @property (nonatomic, assign) BOOL disallowoverscroll;
 
-+ (CDVInAppBrowserOptions*)parseOptions:(NSString*)options;
++ (CDVInAppBrowserOptions*)parseOptions:(NSDictionary*)options;
 
 @end
 
@@ -99,7 +100,7 @@
 - (void)navigateTo:(NSURL*)url;
 - (void)showLocationBar:(BOOL)show;
 - (void)showToolBar:(BOOL)show : (NSString *) toolbarPosition;
-- (void)setCloseButtonTitle:(NSString*)title;
+- (void)setCloseButton:(NSString*)title :(NSString*)colorName;
 
 - (id)initWithUserAgent:(NSString*)userAgent prevUserAgent:(NSString*)prevUserAgent browserOptions: (CDVInAppBrowserOptions*) browserOptions;
 

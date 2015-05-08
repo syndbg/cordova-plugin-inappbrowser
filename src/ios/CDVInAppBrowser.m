@@ -145,7 +145,7 @@
     [self.inAppBrowserViewController showLocationBar:browserOptions.location];
     [self.inAppBrowserViewController showToolBar:browserOptions.toolbar :browserOptions.toolbarposition];
     if (browserOptions.closebuttoncaption != nil) {
-        [self.inAppBrowserViewController setCloseButtonTitle:browserOptions.closebuttoncaption];
+        [self.inAppBrowserViewController setCloseButton:browserOptions.closebuttoncaption colorName: browserOptions.closebuttoncolorname];
     }
     // Set Presentation Style
     UIModalPresentationStyle presentationStyle = UIModalPresentationFullScreen; // default
@@ -592,14 +592,22 @@
     [self.webView setFrame:frame];
 }
 
-- (void)setCloseButtonTitle:(NSString*)title
+- (UIColor*) getUIColorFromString:(NSString*)colorName
+{
+    SEL labelColor = NSSelectorFromString(colorname);
+    UIColor *color = [UIColor performSelector:labelColor];
+    return color;
+}
+
+
+- (void)setCloseButton:(NSString*)title :(NSString*)colorName
 {
     // the advantage of using UIBarButtonSystemItemDone is the system will localize it for you automatically
     // but, if you want to set this yourself, knock yourself out (we can't set the title for a system Done button, so we have to create a new one)
     self.closeButton = nil;
     self.closeButton = [[UIBarButtonItem alloc] initWithTitle:title style:UIBarButtonItemStyleBordered target:self action:@selector(close)];
     self.closeButton.enabled = YES;
-    self.closeButton.tintColor = [UIColor colorWithRed:60.0 / 255.0 green:136.0 / 255.0 blue:230.0 / 255.0 alpha:1];
+    self.closeButton.tintColor = [self.getUIColorFromString: colorName] || [UIColor colorWithRed:60.0 / 255.0 green:136.0 / 255.0 blue:230.0 / 255.0 alpha:1];
 
     NSMutableArray* items = [self.toolbar.items mutableCopy];
     [items replaceObjectAtIndex:0 withObject:self.closeButton];
